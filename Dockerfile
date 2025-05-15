@@ -1,8 +1,15 @@
 FROM ubuntu:latest
 
+# Install some basics for Ubuntu
+RUN apt update && apt -y upgrade && apt install -y software-properties-common
+
 # Install gcc-14
-RUN apt-get update && apt-get -y upgrade && apt-get -y install make gcc-14 g++-14 libssl-dev uuid-dev libcurl4-openssl-dev gdb openssl locales pipx && rm -rf /var/lib/apt/lists/*
+RUN apt -y install make gcc-14 g++-14 libssl-dev uuid-dev libcurl4-openssl-dev gdb openssl locales
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 60 --slave /usr/bin/g++ g++ /usr/bin/g++-14
+
+# Install clang-18
+RUN add-apt-repository http://apt.llvm.org/noble/ llvm-toolchain-noble-18 main
+RUN apt -y install llvm-18 clang-18
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
