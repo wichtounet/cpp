@@ -28,6 +28,9 @@ RUN apt update && apt -y install llvm-20 clang-20
 # Install git
 RUN apt -y install git
 
+# Install boost
+RUN apt -y install libboost-all-dev
+
 # Set the locale
 RUN locale-gen en_US.UTF-8
 ENV LANG=en_US.UTF-8
