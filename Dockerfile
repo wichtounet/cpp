@@ -25,6 +25,9 @@ RUN apt update && apt -y install llvm-19 clang-19
 RUN echo "deb http://apt.llvm.org/plucky/ llvm-toolchain-plucky-20 main" >> /etc/apt/sources.list.d/llvm.list
 RUN apt update && apt -y install llvm-20 clang-20
 
+# Install git
+RUN apt -y install git
+
 # Set the locale
 RUN locale-gen en_US.UTF-8
 ENV LANG=en_US.UTF-8
