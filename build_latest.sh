@@ -3,7 +3,7 @@
 set -e
 
 # Build the image
-docker build -f Dockerfile -t cpp:latest .
+docker build -f Dockerfile.latest -t cpp:latest .
 
 # Sanity checks
 docker run -it cpp:latest g++-14 --version
