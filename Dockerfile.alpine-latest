@@ -1,0 +1,21 @@
+FROM alpine:3.23
+
+# Install some basics for Alpine (curl, gdb, git, apt, nasm)
+RUN apk update && apk upgrade && apk add curl gdb git nasm
+
+# Install some common dependencies (openssl, uuid, libcurl, boost)
+RUN apk add make openssl openssl-dev libssl3 util-linux-dev libcurl boost1.84 musl-dev linux-headers
+
+# Install gcc-15 (latest)
+RUN apk add gcc g++
+RUN ln -s /usr/bin/gcc /usr/bin/gcc-15
+RUN ln -s /usr/bin/g++ /usr/bin/g++-15
+
+# Install clang-20 (latest)
+RUN apk add clang20
+
+# Set the locale
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
+ENV LC_COLLATE=C
